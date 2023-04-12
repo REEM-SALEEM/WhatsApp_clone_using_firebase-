@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:watsappclone/core/color/colors.dart';
 import 'package:watsappclone/core/size/size.dart';
+import 'package:watsappclone/core/theme/custom_theme_extension.dart';
 import 'package:watsappclone/view/widgets/custom_elevated_btn.dart';
 import 'package:watsappclone/view/widgets/lang_btn.dart';
 import 'package:watsappclone/view/widgets/privacy_terms.dart';
@@ -16,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Coloors.backgroundDark,
+      // backgroundColor: Coloors.backgroundDark,
       body: Column(children: [
         Expanded(
             child: Align(
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
             child: Image.asset(
               'assets/images/circle.png',
-              color: Coloors.greenDark,
+              color: context.theme.circleImageColor,
             ),
           ),
         )),

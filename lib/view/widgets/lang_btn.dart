@@ -1,22 +1,88 @@
 import 'package:flutter/material.dart';
 import 'package:watsappclone/core/color/colors.dart';
 import 'package:watsappclone/core/size/size.dart';
+import 'package:watsappclone/core/theme/custom_theme_extension.dart';
 
 class LanguageButton extends StatelessWidget {
   const LanguageButton({
     super.key,
   });
 
+  showBottomSheet(context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Container(
+              height: 4,
+              width: 30,
+              decoration: BoxDecoration(
+                color: context.theme.greyColor!.withOpacity(0.4),
+                borderRadius: BorderRadius.circular(5),
+              ),
+            ),
+            SizeB.w20,
+            Row(children: [
+              IconButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  splashColor: Colors.transparent,
+                  splashRadius: 22,
+                  iconSize: 22,
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(minWidth: 40),
+                  icon: const Icon(
+                    Icons.close_outlined,
+                    color: Coloors.greyDark,
+                  )),
+              SizeB.w10,
+              const Text(
+                'App Language',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              )
+            ]),
+            SizeB.h10,
+            Divider(
+              color: context.theme.greyColor!.withOpacity(0.3),
+              thickness: .5,
+            ),
+            RadioListTile(
+              value: true,
+              groupValue: true,
+              onChanged: (value) {},
+              title: const Text('English'),
+              subtitle: Text(
+                "(phone's language)",
+                style: TextStyle(color: context.theme.greyColor),
+              ),
+            ),
+            RadioListTile(
+              value: true,
+              groupValue: false,
+              onChanged: (value) {},
+              title: const Text('አማርኛ'),
+              subtitle: Text(
+                "Amharic",
+                style: TextStyle(color: context.theme.greyColor),
+              ),
+            )
+          ]),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: const Color(0xFF182229),
+      color: context.theme.langButtonBgColor,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
-        onTap: () {},
+        onTap: () => showBottomSheet(context),
         borderRadius: BorderRadius.circular(20),
         splashFactory: NoSplash.splashFactory,
-        highlightColor: const Color(0xFF09141A),
+        highlightColor: context.theme.langButtonHighlightColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(mainAxisSize: MainAxisSize.min, children: const [
@@ -27,7 +93,9 @@ class LanguageButton extends StatelessWidget {
             SizeB.w10,
             Text(
               'English',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                color: Coloors.greenDark,
+              ),
             ),
             SizeB.w10,
             Icon(
